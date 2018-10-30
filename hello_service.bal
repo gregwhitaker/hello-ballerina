@@ -1,8 +1,6 @@
 // A system package containing protocol access constructs
 // Package objects referenced with 'http:' in code
 import ballerina/http;
-
-# A service endpoint represents a listener.
 endpoint http:Listener listener {
     port:9090
 };
@@ -23,8 +21,14 @@ service<http:Service> hello bind listener {
         // Create object to carry data back to caller
         http:Response response = new;
 
-        // Objects and structs can have function calls
-        response.setTextPayload("Hello Ballerina!\n");
+        var params = request.getQueryParams();
+        string name = params["name"] ?: "";
+
+        if (name == "") {
+            response.setTextPayload("Hello World!\n");
+        } else {
+            response.setTextPayload(untaint string `Hello, {{name}}!\n`);
+        }
 
         // Send a response back to caller
         // Errors are ignored with '_'
