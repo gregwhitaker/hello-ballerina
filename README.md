@@ -1,5 +1,37 @@
 # hello-ballerina
-A simple "Hello World" Ballerina application.
+A simple "Hello World" webservice written in [Ballerina](https://ballerina.io).
+
+## Prerequisites
+This example requires that you have the [Ballerina Distribution](https://ballerina.io/downloads/) installed.
+
+## Running the Example
+1. Run the following command to start the service:
+
+        ballerina run hello_service.bal
+
+    If the service successfully starts you will see the following:
+
+        Initiating service(s) in 'hello_service.bal'
+        ballerina: started HTTP/WS endpoint 0.0.0.0:9090
+
+2. In a new terminal window, run the following curl command to test the service:
+
+        curl http://localhost:9090/hello/sayHello
+
+    If successful, you will see the following response:
+
+        Hello World!
+
+3. Next, run the following curl command:
+
+        curl http://localhost:9090/hello/sayHello?name=You
+
+    You should see the following response:
+
+        Hello, You!
+
+## Bugs and Feedback
+For bugs, questions, and discussions please use the [Github Issues](https://github.com/gregwhitaker/hello-ballerina/issues).
 
 ## License
 MIT License
